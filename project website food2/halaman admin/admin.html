@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - TastyBites</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <!-- Top Navigation -->
+    <nav class="admin-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span>TastyBites Admin</span>
+            </div>
+            <div class="admin-nav-items">
+                <div class="admin-profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-gear" viewBox="0 0 16 16">
+                        <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382zM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
+                    </svg>
+                    <span id="admin-name" style="font-size:20px;">Admin</span>
+                </div>
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">2</span>
+                </div>
+                <a href="../index.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Keluar</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <div class="admin-sidebar">
+            <ul>
+                <li onclick="navigateTo('dashboard')" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="nav-section">Menu Management</li>
+                <li onclick="navigateTo('menu')" class="nav-item">
+                    <i class="fas fa-utensils"></i>
+                    <span>Daftar Menu</span>
+                </li>
+                <li onclick="navigateTo('categories')" class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Kategori Promo</span>
+                </li>
+                <li class="nav-section">Pesanan</li>
+                <li onclick="navigateTo('new-orders')" class="nav-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Pesanan Baru</span>
+                    <span class="badge">1</span>
+                </li>
+                <li onclick="navigateTo('processing-orders')" class="nav-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Sedang Diproses</span>
+                </li>
+                <li onclick="navigateTo('completed-orders')" class="nav-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Pesanan Selesai</span>
+                </li>
+                <li class="nav-section">Promosi</li>
+                <li onclick="navigateTo('active-promos')" class="nav-item">
+                    <i class="fas fa-percent"></i>
+                    <span>Promo Aktif</span>
+                </li>
+                <li onclick="navigateTo('scheduled-promos')" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Promo Terjadwal</span>
+                </li>
+                <li class="nav-section">Analisis</li>
+                <li onclick="navigateTo('sales-report')" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Laporan Penjualan</span>
+                </li>
+                <li onclick="navigateTo('customer-analytics')" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Analisis Pelanggan</span>
+                </li>
+                <li onclick="navigateTo('menu-performance')" class="nav-item">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Performa Menu</span>
+                </li>
+                <li class="nav-section">Pengaturan</li>
+                <li onclick="navigateTo('profile')" class="nav-item">
+                    <i class="fas fa-user-cog"></i>
+                    <span>Profil Admin</span>
+                </li>
+                <li onclick="navigateTo('settings')" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Pengaturan Sistem</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="admin-content">
+            <!-- Content will be loaded dynamically based on navigation -->
+            <div id="content-area">
+                <!-- Default Dashboard View -->
+                <div class="dashboard-welcome">
+                    <h1>Selamat Datang di TastyBites Admin</h1>
+                    <p>Pilih menu di sidebar untuk mengelola restoran Anda</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tambah/Edit Menu -->
+    <div id="menuModal" class="menu-modal">
+        <div class="menu-modal-content">
+            <h2 id="modalTitle">Tambah Menu Baru</h2>
+            <form id="menuForm" class="menu-form" onsubmit="handleMenuSubmit(event)">
+                <div class="form-group">
+                    <label for="menuName">Nama Menu*</label>
+                    <input type="text" id="menuName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="menuCategory">Kategori*</label>
+                    <select id="menuCategory" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="makanan">Makanan</option>
+                        <option value="minuman">Minuman</option>
+                        <option value="dessert">Dessert</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="menuPrice">Harga*</label>
+                    <input type="number" id="menuPrice" required min="0">
+                </div>
+                
+                <div class="form-group">
+                    <label for="menuDescription">Deskripsi</label>
+                    <textarea id="menuDescription" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="menuImage">Gambar Menu</label>
+                    <input type="file" id="menuImage" accept="image/*" onchange="previewImage(event)">
+                    <div class="image-preview" id="imagePreview">
+                        <span id="imagePreviewText">Preview Gambar</span>
+                    </div>
+                </div>
+                
+                <div class="modal-buttons">
+                    <button type="submit" class="save-btn">
+                        <i class="fas fa-save"></i> Simpan
+                    </button>
+                    <button type="button" class="cancel-btn" onclick="closeMenuModal()">
+                        <i class="fas fa-times"></i> Batal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TastyBites Restaurant - Kuliner Terbaik</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TastyBites</div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Cari menu...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Beranda</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#promos">Promo</a></li>
+            <li><a href="#location">Lokasi</a></li>
+            <li><a href="#about">Tentang</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <div class="cart-container">
+                <i class="fas fa-shopping-cart cart-icon">
+                    <span class="cart-count">0</span>
+                </i>
+            </div>
+            <button class="admin-login-btn" onclick="showAdminLogin()">
+                <i class="fas fa-user-shield"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>Rasakan Kelezatan<br>Kuliner Terbaik</h1>
+            <p>Nikmati berbagai menu spesial dari chef terbaik kami</p>
+            <button class="cta-button">
+                <span><a href="#menu" style="text-decoration: none; color: inherit;">Lihat Menu</a></span>
+                <a href="#menu" style="text-decoration: none; color: inherit;"><i class="fas fa-arrow-right"></i></a>
+            </button>
+        </div>
+    </header>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <h2>Menu Kami</h2>
+        <div class="category-filter">
+            <button class="filter-btn active" data-category="all">Semua</button>
+            <button class="filter-btn" data-category="main-course">Main Course</button>
+            <button class="filter-btn" data-category="appetizer">Appetizer</button>
+            <button class="filter-btn" data-category="dessert">Dessert</button>
+            <button class="filter-btn" data-category="beverages">Minuman</button>
+        </div>
+        <div class="menu-grid" id="menuGrid">
+            <!-- Menu items will be dynamically added here -->
+        </div>
+    </section>
+
+    <!-- Promos Section -->
+    <section id="promos" class="promos-section">
+        <h2>Promo Spesial</h2>
+        <div class="promo-cards">
+            <div class="promo-card">
+                <div class="promo-content">
+                    <h3>Paket Keluarga</h3>
+                    <p>4 Main Course + 4 Minuman</p>
+                    <p>Hemat 25%</p>
+                    <p>Khusus Pemesanan Online</p>
+                    <button class="order-btn promo-order-btn" data-promo="family">Pesan Sekarang</button>
+                </div>
+            </div>
+            <div class="promo-card">
+                <div class="promo-content">
+                    <h3>Happy Hour</h3>
+                    <p>Setiap hari 15:00 - 17:00</p>
+                    <p>Diskon 20% untuk semua minuman</p>
+                    <p>Khusus Pemesanan Online</p>
+                    <button class="order-btn promo-order-btn" data-promo="happyHour">Pesan Sekarang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Location Section -->
+    <section id="location" class="location-section">
+        <h2>Lokasi Kami</h2>
+        <div class="location-container">
+            <div id="map" class="map">
+                <iframe 
+                    src="https://www.google.co.id/maps/place/Bali/@-8.4553335,114.7419106,10z/data=!3m1!4b1!4m6!3m5!1s0x2dd141d3e8100fa1:0x24910fb14b24e690!8m2!3d-8.4095178!4d115.188916!16s%2Fg%2F121hxh1j?entry=ttu&g_ep=EgoyMDI1MDIwNC4wIKXMDSoASAFQAw%3D%3D"
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            
+            <div class="location-info">
+                <h3>TastyBites Restaurant</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Jl. Sudirman No. 123, Bali</p>
+                <p><i class="fas fa-phone"></i> (021) 555-0123</p>
+                <p><i class="fas fa-clock"></i> Buka Setiap Hari: 10:00 - 22:00 WIB</p>
+                <a href="https://www.google.co.id/maps/place/Bali/@-8.4553335,114.7419106,10z/data=!3m1!4b1!4m6!3m5!1s0x2dd141d3e8100fa1:0x24910fb14b24e690!8m2!3d-8.4095178!4d115.188916!16s%2Fg%2F121hxh1j?entry=ttu&g_ep=EgoyMDI1MDIwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="directions-btn">
+                    <i class="bi bi-arrow-bar-right"></i> Petunjuk Arah
+                </a>
+            </div>
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="facilities-section">
+        <h2>Mengapa TastyBites?</h2>
+        <div class="facilities-grid">
+            <div class="facility-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Bahan Berkualitas</h3>
+            </div>
+            <div class="facility-card">
+                <i class="fas fa-clock"></i>
+                <h3>Pengiriman Cepat</h3>
+            </div>
+            <div class="facility-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Higienis</h3>
+            </div>
+            <div class="facility-card">
+                <i class="fas fa-percent"></i>
+                <h3>Harga Terjangkau</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Hubungi Kami</h3>
+                <p><i class="fas fa-phone"></i> (021) 555-0123</p>
+                <p><i class="fas fa-envelope"></i> info@tastybites.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Jam Operasional</h3>
+                <p>Senin - Minggu</p>
+                <p>10:00 - 22:00 WIB</p>
+            </div>
+            <div class="footer-section">
+                <h3>Ikuti Kami</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TastyBites Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- Google Maps API Script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="admin-login-modal">
+        <div class="admin-login-content">
+            <div class="admin-login-header">
+                <h2>Admin Login</h2>
+                <button class="close-login-btn" onclick="closeAdminLogin()">&times;</button>
+            </div>
+            <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="admin-submit-btn">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
