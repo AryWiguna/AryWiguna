@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DateSpot Indonesia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://maps.googlepais.com/maps/api/js?key=YOUR_API_KEy"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-heart"></i> DateSpot Indonesia
+        </div>
+        <div class="tagline">Temukan tempat kencan terbaik untuk momen spesialmu</div>
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Search Section -->
+        <section class="search-container">
+            <h2>Temukan Tempat Kencan Impianmu</h2>
+            <div class="search-form">
+                <div class="form-group">
+                    <label for="location">Lokasi</label>
+                    <input type="text" id="location" placeholder="Masukkan kota atau alamat kamu">
+                    <button class="geo-button" id="geoButton">
+                        <i class="fas fa-map-marker-alt"></i> Gunakan Lokasi Saat Ini
+                    </button>
+                </div>
+                
+                <div class="form-group">
+                    <label>Budget</label>
+                    <div class="budget-options">
+                        <div class="budget-option" data-budget="low">
+                            <h3>Low</h3>
+                            <p>< Rp100.000</p>
+                        </div>
+                        <div class="budget-option" data-budget="medium">
+                            <h3>Medium</h3>
+                            <p>Rp100.000 - Rp500.000</p>
+                        </div>
+                        <div class="budget-option" data-budget="high">
+                            <h3>High</h3>
+                            <p>> Rp500.000</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <div class="category-filters">
+                        <button class="category-filter" data-category="all">Semua</button>
+                        <button class="category-filter" data-category="restaurant">Restoran</button>
+                        <button class="category-filter" data-category="cafe">Kafe</button>
+                        <button class="category-filter" data-category="park">Taman</button>
+                        <button class="category-filter" data-category="mall">Mall</button>
+                        <button class="category-filter" data-category="beach">Pantai</button>
+                        <button class="category-filter" data-category="activity">Aktivitas</button>
+                    </div>
+                </div>
+                
+                <button class="search-button" id="searchButton">
+                    <i class="fas fa-search"></i> Cari Tempat Kencan
+                </button>
+            </div>
+        </section>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p style="margin-top: 1rem;">Mencari tempat kencan terbaik untukmu...</p>
+        </div>
+
+        <!-- Results Section -->
+        <section class="results-container" id="resultsContainer">
+            <div class="results-header">
+                <div class="results-count">Menampilkan <span id="resultsCount">0</span> tempat kencan</div>
+                <select class="sort-dropdown" id="sortDropdown">
+                    <option value="distance">Jarak Terdekat</option>
+                    <option value="rating">Rating Tertinggi</option>
+                    <option value="price-low">Harga: Terendah</option>
+                    <option value="price-high">Harga: Tertinggi</option>
+                </select>
+            </div>
+            
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be dynamically added here -->
+            </div>
+            
+            <div class="map-container" id="mapContainer">
+                <div id="map"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Place Detail Modal -->
+    <div class="modal" id="placeModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="modalPlaceTitle">Nama Tempat</h2>
+            <div class="place-gallery" id="placeGallery">
+                <!-- Gallery images will be added here -->
+            </div>
+            <div class="modal-place-details">
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div id="modalPlaceLocation">Lokasi</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-tag"></i></div>
+                    <div id="modalPlacePrice">Harga</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-clock"></i></div>
+                    <div id="modalPlaceHours">Jam Buka</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-phone"></i></div>
+                    <div id="modalPlaceContact">Kontak</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-globe"></i></div>
+                    <div id="modalPlaceWebsite">Website</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-info-circle"></i></div>
+                    <div id="modalPlaceDescription">Deskripsi</div>
+                </div>
+            </div>
+            
+            <div class="reviews-section">
+                <h3>Ulasan Pengunjung</h3>
+                <div id="reviewsContainer">
+                    <!-- Reviews will be added here -->
+                </div>
+                
+                <div class="add-review-form">
+                    <h3>Tambahkan Ulasan</h3>
+                    <div class="star-rating" id="starRating">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+
+    <script src="script_dating.js"></script>
+    
+    <footer>
+        <div class="footer-logo">❤️ DateSpot Indonesia</div>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Tentang Kami</a>
+            <a href="#" class="footer-link">Kontak</a>
+            <a href="#" class="footer-link">Privasi</a>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+        </div>
+        <div class="copyright">&copy; 2025 DateSpot Indonesia. All rights reserved.</div>
+    </footer>
+                        
