@@ -73,9 +73,27 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/AryWiguna/AryWiguna/output/github-contribution-grid-snake.svg" alt="GitHub Contribution Grid Snake Animation" width="100%">
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="https://raw.githubusercontent.com/AryWiguna/AryWiguna/main/dist/github-contribution-grid-snake-dark.svg"
+  />
+
+<source
+ media="(prefers-color-scheme: light)"
+ srcset="https://raw.githubusercontent.com/AryWiguna/AryWiguna/main/dist/github-contribution-grid-snake.svg"
+/>
+
+<img
+ src="https://raw.githubusercontent.com/AryWiguna/AryWiguna/main/dist/github-contribution-grid-snake.svg"
+ alt="GitHub Contribution Snake Animation"
+ width="100%"
+/>
+
+</picture>
 
 </div>
+
 
 ---
 
