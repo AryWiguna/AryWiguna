@@ -2,9 +2,14 @@ name: Generate Snake Animation
 
 on:
 schedule:
+# Jalankan otomatis setiap 12 jam
 - cron: "0 */12 * * *"
 
+# Bisa dijalankan secara manual dari GitHub Actions
+
 workflow_dispatch:
+
+# Jalankan ketika ada perubahan di main
 
 push:
 branches:
@@ -14,39 +19,36 @@ permissions:
 contents: write
 
 jobs:
-generate:
+build:
 runs-on: ubuntu-latest
-timeout-minutes: 10
 
 ```
 steps:
 
-  - name: Checkout Repository
+  # Checkout repository
+  - name: Checkout repository
     uses: actions/checkout@v4
 
+  # Generate GitHub contribution snake
   - name: Generate Snake Animation
-    uses: Platane/snk/svg-only@v3
+    uses: Platane/snk@v3
     with:
-      github_user_name: AryWiguna
+      github_user_name: ${{ github.repository_owner }}
+
       outputs: |
-        dist/github-contribution-grid-snake.svg
-        dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+        dist/github-contribution-grid-snake.svg?color_snake=blue
+        dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=red
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  - name: Show Generated Files
-    run: |
-      echo "Generated files:"
-      find dist -type f -maxdepth 2 -print
-
-  - name: Deploy Snake to Output Branch
-    uses: crazy-max/ghaction-github-pages@v3.1.0
+  # Commit hasil SVG ke branch main
+  - name: Commit Snake Animation
+    uses: stefanzweifel/git-auto-commit-action@v4
     with:
-      target_branch: output
-      build_dir: dist
       commit_message: "Update GitHub contribution snake"
-
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      file_pattern: "dist/*.svg"
+      commit_user_name: "github-actions[bot]"
+      commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+      commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
 ```
