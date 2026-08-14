@@ -15,7 +15,7 @@
 ---
 
 ### 👨‍💻 About Me
-- 🎓 Currently in my 6th Semester studying Information Technology at **STIKOM Bali**.
+- 🎓 Currently in my 7th Semester studying Information Technology at **STIKOM Bali**.
 - 💻 Focused on **Full-Stack Web Development**, building seamless **UI/UX**, and exploring Digital Forensics.
 - 🎮 When I'm not writing code, I'm grinding ranks in **Tekken 8** (Marshall Law main).
 - 🚀 Always experimenting with new architectures and optimizing performance across platforms.
