@@ -7,7 +7,7 @@
   <a href="https://instagram.com/arywiguna206">
     <img src="https://img.shields.io/badge/Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white" alt="Instagram" />
   </a>
-  <a href="[https://visitcount.itsvg.in](https://visitcount.itsvg.in/api?id=AryWiguna&label=Profile%20Views&color=7&icon=5&pretty=true)](https://visitcount.itsvg.in)">
+ <a href="[https://visitcount.itsvg.in](https://visitcount.itsvg.in/api?id=AryWiguna&label=Profile%20Views&color=7&icon=5&pretty=true)](https://visitcount.itsvg.in)">
   <img src="https://visitcount.itsvg.in/api?id=AryWiguna&label=Profile%20Views&color=7&icon=5&pretty=true" />
 </a>
 </div>
