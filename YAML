@@ -1,42 +1,52 @@
 name: Generate Snake Animation
 
 on:
-  schedule:
-    - cron: "0 */12 * * *"
+schedule:
+- cron: "0 */12 * * *"
 
-  workflow_dispatch:
+workflow_dispatch:
 
-  push:
-    branches:
-      - main
+push:
+branches:
+- main
 
-# Permission yang dibutuhkan agar GitHub Actions
-# bisa membuat/update branch output
 permissions:
-  contents: write
+contents: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+generate:
+runs-on: ubuntu-latest
+timeout-minutes: 10
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+```
+steps:
 
-      - name: Generate Snake Animation
-        uses: Platane/snk@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+  - name: Checkout Repository
+    uses: actions/checkout@v4
 
-      - name: Push Snake Animation to output branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          target_branch: output
-          build_dir: dist
-          commit_message: Update GitHub contribution snake
+  - name: Generate Snake Animation
+    uses: Platane/snk/svg-only@v3
+    with:
+      github_user_name: AryWiguna
+      outputs: |
+        dist/github-contribution-grid-snake.svg
+        dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  - name: Show Generated Files
+    run: |
+      echo "Generated files:"
+      find dist -type f -maxdepth 2 -print
+
+  - name: Deploy Snake to Output Branch
+    uses: crazy-max/ghaction-github-pages@v3.1.0
+    with:
+      target_branch: output
+      build_dir: dist
+      commit_message: "Update GitHub contribution snake"
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
