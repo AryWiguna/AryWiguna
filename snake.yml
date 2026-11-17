@@ -1,0 +1,47 @@
+name: Generate Snake Animation
+
+on:
+  # Jalankan otomatis setiap 12 jam
+  schedule:
+    - cron: "0 */12 * * *"
+
+  # Bisa dijalankan secara manual dari GitHub Actions
+  workflow_dispatch:
+
+  # Jalankan ketika ada perubahan di main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Generate GitHub contribution snake
+      - name: Generate Snake Animation
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg?color_snake=blue
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=red
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Commit hasil SVG ke branch main
+      - name: Commit Snake Animation
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update GitHub contribution snake"
+          file_pattern: "dist/*.svg"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
